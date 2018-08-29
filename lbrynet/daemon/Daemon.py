@@ -1930,6 +1930,7 @@ class Daemon(AuthJSONRPCServer):
             }
         """
 
+        amount = self.get_dewies_or_error("amount", amount)
         result = yield self.wallet.support_claim(name, claim_id, amount)
         self.analytics_manager.send_claim_action('new_support')
         defer.returnValue(result)
